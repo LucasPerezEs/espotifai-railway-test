@@ -9,7 +9,7 @@
         const token = params.get("token");
 
         // 1) Intentar abrir la app
-        window.location.href = `espotifai://reset-password?token=${token}`;
+        window.location.href = window.location.href = `espotifai:///reset-password?token=${token}`;
 
         // 2) Fallback si la app no está instalada
         setTimeout(() => {
