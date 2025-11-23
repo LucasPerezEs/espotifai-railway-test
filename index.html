@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Abrir app</title>
+    <script>
+      function openApp() {
+        const params = new URLSearchParams(window.location.search);
+        const token = params.get("token");
+
+        // 1) Intentar abrir la app
+        window.location.href = `espotifai://reset-password?token=${token}`;
+
+        // 2) Fallback si la app no está instalada
+        setTimeout(() => {
+          window.location.href = "https://tu-pagina-de-reset.com/";
+        }, 1500);
+      }
+    </script>
+  </head>
+  <body onload="openApp()">
+    <p>Redirigiendo...</p>
+  </body>
+</html>
