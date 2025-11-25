@@ -29,9 +29,10 @@
     <script>
       function openApp() {
         const params = new URLSearchParams(window.location.search);
+        const path = params.get("path")
         const token = params.get("token");
 
-        window.location.href = `espotifai:///reset-password?token=${token}`;
+        window.location.href = `espotifai:///${path}?token=${token}`;
 
         setTimeout(() => {
           document.getElementById('redirecting').classList.add('hidden');
@@ -42,7 +43,7 @@
   </head>
   <body onload="openApp()">
     <div id="redirecting">
-      <p>Redirigiendo...</p>
+      <p>Redirecting...</p>
     </div>
     <div id="fallback" class="hidden">
       <div class="message">
