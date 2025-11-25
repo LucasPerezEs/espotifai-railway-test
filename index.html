@@ -3,22 +3,52 @@
   <head>
     <meta charset="utf-8" />
     <title>Abrir app</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: #181818;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .hidden {
+        display: none;
+      }
+      .message {
+        font-size: 1.3rem;
+        text-align: center;
+        max-width: 300px;
+        color: #1db954;
+      }
+    </style>
     <script>
       function openApp() {
         const params = new URLSearchParams(window.location.search);
         const token = params.get("token");
 
-        // 1) Intentar abrir la app
         window.location.href = `espotifai:///reset-password?token=${token}`;
 
-        // 2) Fallback si la app no está instalada
         setTimeout(() => {
-          window.location.href = "https://tu-pagina-de-reset.com/";
+          document.getElementById('redirecting').classList.add('hidden');
+          document.getElementById('fallback').classList.remove('hidden');
         }, 1500);
       }
     </script>
   </head>
   <body onload="openApp()">
-    <p>Redirigiendo...</p>
+    <div id="redirecting">
+      <p>Redirigiendo...</p>
+    </div>
+    <div id="fallback" class="hidden">
+      <div class="message">
+        Espotifai app is not installed.<br>
+        Please, install the app and try again.
+      </div>
+    </div>
   </body>
 </html>
